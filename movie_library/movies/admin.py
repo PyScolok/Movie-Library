@@ -46,7 +46,7 @@ class MovieAdmin(admin.ModelAdmin):
             'fields': (('title', 'tagline'), )
         }),
         (None, {
-            'fields': ('description', )
+            'fields': (('description', 'trailer_link'), )
         }),
         (None, {
             'fields': (('poster', 'get_image'), )

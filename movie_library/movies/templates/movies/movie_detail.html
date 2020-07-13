@@ -20,14 +20,12 @@
             </div>
             <div class="desc1-right col-md-6 pl-lg-4">
                 <h3 class="editContent" style="outline: none; cursor: inherit;">
-                    {{ movie.title }}</h3>
-                <h5 class="editContent"></h5>
+                    {{ movie.title }}
+                </h3>
                 <ul>
                     <li style="list-style: none"><span><b>Год: </b>{{ movie.year }}</span></li>
-                    <li style="list-style: none"><span><b>Страна: </b>{{ movie.country }}</span>
-                    </li>
-                    <li style="list-style: none"><span><b>Слоган: </b>{{ movie.tagline }}</span>
-                    </li>
+                    <li style="list-style: none"><span><b>Страна: </b>{{ movie.country }}</span></li>
+                    <li style="list-style: none"><span><b>Слоган: </b>{{ movie.tagline }}</span></li>
                     <li style="list-style: none">
                         <span><b>Режиссер: </b>
                             {% for director in movie.directors.all %}
@@ -49,12 +47,9 @@
                             {% endfor %}
                         </span>
                     </li>
-                    <li style="list-style: none"><span><b>Премьера в мире: </b>{{ movie.world_premiere }}</span>
-                    </li>
-                    <li style="list-style: none">
-                        <span><b>Бюджет: </b>${{ movie.budget }}</span></li>
-                    <li style="list-style: none"><span><b>Сборы в мире: </b>${{ movie.fees_in_world }}</span>
-                    </li>
+                    <li style="list-style: none"><span><b>Премьера в мире: </b>{{ movie.world_premiere }}</span></li>
+                    <li style="list-style: none"><span><b>Бюджет: </b>${{ movie.budget }}</span></li>
+                    <li style="list-style: none"><span><b>Сборы в мире: </b>${{ movie.fees_in_world }}</span></li>
                     <li style="list-style: none">
                         <a href="#"><b>Рейтинг:</b>
                         <span class="fa fa-star" aria-hidden="true"
@@ -100,29 +95,25 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="clearfix"></div>
                     </div>
+                </ul>    
             </div>
         </div>
         <div class="row sub-para-w3layouts mt-5">
-
             <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
-                О фильме {{ movie.title }}</h3>
+                О фильме {{ movie.title }}
+            </h3>
             <p>
                 {% for image in movie.movieshots_set.all %}
                     <img src="{{ image.image.url }}" class="img-movie-shots" alt="">
                 {% endfor %}
             </p>
             <p class="editContent" style="outline: none; cursor: inherit;">{{ movie.description }}</p>
-            <p class="mt-3 italic-blue editContent"
-                style="outline: none; cursor: inherit;">
-                <iframe width="560" height="315"
-                        src="https://www.youtube.com/embed/A36LahZNUiE?controls=0"
-                        frameborder="0" allow="accelerometer; autoplay;
-                                                                encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-
-                </iframe>
+            <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
+                Трейлер к фильму
+            </h3>
+            <p class="mt-3 italic-blue editContent" style="outline: none; cursor: inherit;">
+                <iframe width="560" height="315" src="{{ movie.trailer_link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </p>
         </div>
         <hr>
