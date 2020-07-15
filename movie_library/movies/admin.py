@@ -87,8 +87,8 @@ class GenreAdmin(admin.ModelAdmin):
 @admin.register(Actor)
 class ActorAdmin(admin.ModelAdmin):
     """Актеры и режиссеры"""
-    list_display = ('__str__', 'age', 'get_image')
-    search_fields = ('first_name', 'last_name')
+    list_display = ('__str__', 'age', 'get_image', 'country')
+    search_fields = ('first_name', 'last_name', 'country')
 
     def get_image(self, obj):
         """Возвращает миниатюру изображения актёра/режиссера"""

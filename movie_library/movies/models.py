@@ -21,10 +21,14 @@ class Actor(models.Model):
     first_name = models.CharField('Имя', max_length=50)
     last_name = models.CharField('Фамилия', max_length=50)
     age = models.PositiveSmallIntegerField('Возраст', null=True, blank=True)
+    country = models.CharField('Страна', max_length=50, null=True)
     description = models.TextField('Описание')
     image = models.ImageField('Изображение', upload_to='actors/')
 
     def __str__(self):
+        return f'{self.first_name}  {self.last_name}'
+
+    def get_full_name(self):
         return f'{self.first_name}  {self.last_name}'
 
     class Meta:
