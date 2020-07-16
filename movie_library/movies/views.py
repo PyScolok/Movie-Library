@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
+from django.utils import timezone
 
 
 from .forms import ReviewForm
@@ -39,4 +40,12 @@ class ActorDetailView(DetailView):
 
     model = Actor
     template_name = 'movies/actor.html'
-    slug_field = 'id'
+    
+
+    def get_context_data(self, **kwargs):
+        """Передает с контекстом суммарное количество фильмов с которыми работал актер/режиссер"""
+        context = super().get_context_data(**kwargs)
+        queryset = Actor.objects.get(pk=context['actor'].id)
+        total_movies = queryset.film_actor.count() + queryset.film_director.count()
+        context['total_movies'] = total_movies
+        return context
