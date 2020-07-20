@@ -113,7 +113,7 @@ class MovieShotsAdmin(admin.ModelAdmin):
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     """Рейтинг"""
-    list_display = ("movie", "ip")
+    list_display = ('star', "movie", "ip")
 
 
 admin.site.register(Comment)  # комментарии
