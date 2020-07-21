@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
-from django.utils import timezone
 from django.db.models import Q
 from django.http import JsonResponse, HttpResponse
 
@@ -27,6 +26,7 @@ class MoviesView(GenresYears, ListView):
 
     model = Movie
     queryset = Movie.objects.filter(draft=False)
+    paginate_by = 2
 
 
 class MovieDetailView(GenresYears, DetailView):
@@ -70,21 +70,23 @@ class ActorDetailView(GenresYears, DetailView):
         return context
 
 
-class FilterAndSearchMovies(ListView):
-    """Фильтрация и поиск фильмов"""
+class FilterMovies(GenresYears, ListView):
+    """Фильтрация фильмов"""
+
+    paginate_by = 2
 
     def get_queryset(self):
         queryset = Movie.objects.filter(
             Q(year__in=self.request.GET.getlist('year')) |
             Q(genres__in=self.request.GET.getlist('genre'))
-        ).distinct().values('title', 'tagline', 'poster', 'url')
+        ).distinct()
         return queryset
 
-    
-    def get(self, request, *args, **kwargs):
-        queryset = list(self.get_queryset())
-        return JsonResponse({"movies": queryset}, safe=False)
-
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['year'] = ''.join([f'year={x}&' for x in self.request.GET.getlist('year')])
+        context['genre'] = ''.join([f'genre={x}&' for x in self.request.GET.getlist('genre')])
+        return context
 
 class AddStarRating(View):
     """Добавление рейтинга"""
