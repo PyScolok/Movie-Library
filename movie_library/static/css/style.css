@@ -1040,7 +1040,7 @@ h3.sear-head {
     transition: all .2s ease-in-out;
     font-family: Roboto, sans-serif;
     font-size: 16px;
-    color: #6163b9
+    color: #ff4c4c;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1051,7 +1051,7 @@ h3.sear-head {
 
 @media only screen and (min-width: 1025px) {
     .pagination a.pagination__link:hover {
-        background: rgba(102, 88, 175, .15);
+        background: rgba(30, 39, 46, .15);
     }
 }
 
@@ -1099,18 +1099,18 @@ h3.sear-head {
 @media only screen and (min-width: 1025px) {
     .pagination__item.active:hover
     .pagination__link {
-        color: #fff;
-        background: #6658af;
+        color: #ff4c4c;
+        background: #1e272e;
     }
 }
 
 .pagination__item.active .pagination__link {
-    color: #fff;
-    background: #6658af;
+    color: #ff4c4c;
+    background: #1e272e;
 }
 
 .pagination__item--dots .pagination__link {
-    color: #bfc0f1;
+    color: #ff4c4c;
 }
 
 /*--/footer--*/
@@ -1173,6 +1173,27 @@ h2.logo-2 a {
     color: #1c1d21;
     text-shadow: 2px 5px 3px rgba(0, 0, 0, 0.06);
     letter-spacing: 1px;
+}
+
+/* Кнопка найти */
+.search-button {
+    background: #1e272e;
+    letter-spacing: 1px;
+    padding: 14px 0;
+    border: transparent;
+    text-transform: uppercase;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    transition: 0.5s all;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0;
+    padding: 0.7em 2em;
+}
+
+.search-button span {
+    color: #ff4c4c;
+    font-size: 17px; 
 }
 
 /*--contact--*/
