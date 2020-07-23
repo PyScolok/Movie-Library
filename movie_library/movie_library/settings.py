@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'movies.apps.MoviesConfig',
+    'snowpenguin.django.recaptcha3',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    'contact.apps.ContactConfig',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'movie_library.urls'
@@ -128,3 +133,10 @@ STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+RECAPTCHA_PRIVATE_KEY = '6Lc0NbUZAAAAAEdYsx8Rl5KYI1m7FL9Dzu2x5eZb'
+RECAPTCHA_PUBLIC_KEY = '6Lc0NbUZAAAAAPEhgMSP7h5ZmrEKwmEQ7AhBYNJC'
+RECAPTCHA_DEFAULT_ACTION = 'generic'
+RECAPTCHA_SCORE_THRESHOLD = 0.5
+
+SITE_ID = 1

@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.flatpages import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('movies.urls'))
+    path('contact/', include('contact.urls')),
+    path('', include('movies.urls')),
+    path('about/', views.flatpage, name='about'),
 ]
 
 if settings.DEBUG:
