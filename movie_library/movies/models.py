@@ -4,6 +4,7 @@ from django.urls import reverse
 
 class Category(models.Model):
     '''Категории'''
+
     name = models.CharField('Категория', max_length=150)
     description = models.TextField('Описание')
     url = models.SlugField(max_length=160, unique=True)
@@ -18,6 +19,7 @@ class Category(models.Model):
 
 class Actor(models.Model):
     '''Актеры и режиссеры'''
+
     first_name = models.CharField('Имя', max_length=50)
     last_name = models.CharField('Фамилия', max_length=50)
     age = models.PositiveSmallIntegerField('Возраст', null=True, blank=True)
@@ -38,6 +40,7 @@ class Actor(models.Model):
 
 class Genre(models.Model):
     '''Жанры'''
+
     name = models.CharField('Жанр', max_length=25)
     description = models.TextField('Описание')
     url = models.SlugField(max_length=160, unique=True)
@@ -52,6 +55,7 @@ class Genre(models.Model):
 
 class Movie(models.Model):
     '''Фильмы'''
+
     title = models.CharField('Название', max_length=100)
     tagline = models.CharField('Слоган', max_length=100, default='')
     description = models.TextField('Описание')
@@ -89,6 +93,7 @@ class Movie(models.Model):
 
 class MovieShots(models.Model):
     '''Кадры из фильма'''
+
     title = models.CharField('Заголовок', max_length=50)
     image = models.ImageField('Изображение', upload_to='movie_shots/')
     movie = models.ForeignKey(
@@ -104,6 +109,7 @@ class MovieShots(models.Model):
 
 class Rating(models.Model):
     '''Рейтинг'''
+
     ip = models.CharField('IP-адрес', max_length=15)
     star = models.ForeignKey(
         'RatingStar', on_delete=models.CASCADE, verbose_name='Звезда')
@@ -120,6 +126,7 @@ class Rating(models.Model):
 
 class RatingStar(models.Model):
     '''Звезды рейтинга'''
+
     value = models.SmallIntegerField('Значение', default=0)
 
     def __str__(self):
@@ -133,6 +140,7 @@ class RatingStar(models.Model):
 
 class Review(models.Model):
     '''Отзывы'''
+
     email = models.EmailField()
     name = models.CharField('Имя', max_length=50)
     title = models.CharField('Заголовок', max_length=100)
@@ -150,6 +158,7 @@ class Review(models.Model):
 
 class Comment(models.Model):
     '''Комментарии'''
+    
     email = models.EmailField()
     name = models.CharField('Имя', max_length=50)
     comment = models.TextField('Комментарий')

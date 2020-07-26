@@ -1,5 +1,7 @@
 {% extends 'movies/base.html' %}
 
+{% load static i18n %}
+
 {% block title %}
     {{ movie.title }}
 {% endblock %}
@@ -23,36 +25,36 @@
                     {{ movie.title }}
                 </h3>
                 <ul>
-                    <li style="list-style: none"><span><b>Год: </b>{{ movie.year }}</span></li>
-                    <li style="list-style: none"><span><b>Страна: </b>{{ movie.country }}</span></li>
-                    <li style="list-style: none"><span><b>Слоган: </b>{{ movie.tagline }}</span></li>
+                    <li style="list-style: none"><span><b>{% trans Год %}: </b>{{ movie.year }}</span></li>
+                    <li style="list-style: none"><span><b>{% trans Страна %}: </b>{{ movie.country }}</span></li>
+                    <li style="list-style: none"><span><b>{% trans Слоган %}: </b>{{ movie.tagline }}</span></li>
                     <li style="list-style: none">
-                        <span><b>Режиссер: </b>
+                        <span><b>{% trans Режиссер %}: </b>
                             {% for director in movie.directors.all %}
                                 <a href="{% url 'actor_detail' director.id %}">{{ director.get_full_name }}</a>
                             {% endfor %}
                         </span>
                     </li>
                     <li style="list-style: none">
-                        <span><b>Актеры: </b>
+                        <span><b>{% trans Актеры %}: </b>
                             {% for actor in movie.actors.all %}
                                 <a href="{% url 'actor_detail' actor.id %}">{{ actor.get_full_name }}</a>
                             {% endfor %}
                         </span>
                     </li>
                     <li style="list-style: none">
-                        <span><b>Жанр: </b>
+                        <span><b>{% trans Жанр %}: </b>
                             {% for genre in movie.genres.all %}
                                 {{ genre.name }}
                             {% endfor %}
                         </span>
                     </li>
-                    <li style="list-style: none"><span><b>Премьера в мире: </b>{{ movie.world_premiere }}</span></li>
-                    <li style="list-style: none"><span><b>Бюджет: </b>${{ movie.budget }}</span></li>
-                    <li style="list-style: none"><span><b>Сборы в мире: </b>${{ movie.fees_in_world }}</span></li>
+                    <li style="list-style: none"><span><b>{% trans Премьера в мире %}: </b>{{ movie.world_premiere }}</span></li>
+                    <li style="list-style: none"><span><b>{% trans Бюджет %}: </b>${{ movie.budget }}</span></li>
+                    <li style="list-style: none"><span><b>{% trans Сборы в мире %}: </b>${{ movie.fees_in_world }}</span></li>
                     <li style="list-style: none">
                         <form action="{% url 'add_rating' %}" method="POST" name="rating">
-                            <b>Рейтинг:</b>
+                            <b>{% trans Рейтинг %}:</b>
                             {% csrf_token %}
                             <input type="hidden" value="{{ movie.id }}" name="movie">
                             <span class="rating" >
@@ -99,7 +101,7 @@
         </div>
         <div class="row sub-para-w3layouts mt-5">
             <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
-                О фильме {{ movie.title }}
+                {% trans О фильме %} {{ movie.title }}
             </h3>
             <p>
                 {% for image in movie.movieshots_set.all %}
@@ -108,7 +110,7 @@
             </p>
             <p class="editContent" style="outline: none; cursor: inherit;">{{ movie.description }}</p>
             <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
-                Трейлер к фильму
+                {% trans Трейлер к фильму %}
             </h3>
             <p class="mt-3 italic-blue editContent" style="outline: none; cursor: inherit;">
                 <iframe width="560" height="315" src="{{ movie.trailer_link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -121,40 +123,40 @@
                 <div class="contact-single">
                     <h3 class="editContent" style="outline: none; cursor: inherit;">
                         <span class="sub-tittle editContent"
-                                style="outline: none; cursor: inherit;">02</span>Оставить отзыв</h3>
+                                style="outline: none; cursor: inherit;">02</span>{% trans Оставить отзыв %}</h3>
                     <form action="{% url 'add_review' movie.id %}" method="post" class="mt-4">
                         {% csrf_token %}
                         <div class="form-group1"
                                 style="outline: none; cursor: inherit;">
                             <label for="contacttitle" class="editContent">
-                                Заголовок
+                                {% trans Заголовок %}
                             </label>
                             {{ form.title }}
                         </div>                
                         <div class="form-group editContent"
                                 style="outline: none; cursor: inherit;">
                             <label for="contactcomment" class="editContent">
-                                Ваш отзыв
+                                {% trans Ваш отзыв %}
                             </label>
                             {{ form.text }}
                         </div>
                         <div class="d-sm-flex">
                             <div class="col-sm-6 form-group p-0 editContent">
                                 <label for="contactusername" class="editContent">
-                                    Ваше имя
+                                    {% trans Ваше имя %}
                                 </label>
                                 {{ form.name }}
                             </div>
                             <div class="col-sm-6 form-group ml-sm-3 editContent">
                                 <label for="contactemail" class="editContent">
-                                    Ваш Email
+                                    {% trans Ваш Email %}
                                 </label>
                                 {{ form.email }}
                             </div>
                             {{ form.captcha }}
                         </div>
                         <button type="submit" class="mt-3 btn btn-success btn-block py-3">
-                            Отправить
+                            {% trans Отправить %}
                         </button>
                     </form>
                 </div>

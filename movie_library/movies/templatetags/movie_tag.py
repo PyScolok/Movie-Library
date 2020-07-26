@@ -1,9 +1,9 @@
 from django import template
+
 from movies.models import Category, Movie, Actor
 
 
 register = template.Library()
-
 
 @register.simple_tag()
 def get_category():

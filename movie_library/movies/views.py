@@ -17,7 +17,7 @@ class GenresYears:
         return Genre.objects.all()
     
     def get_years(self):
-        """Получение годы выхода из всех фильмов"""
+        """Получение года выхода всех фильмов"""
         return Movie.objects.filter(draft=False).values('year')
 
 
@@ -61,7 +61,6 @@ class ActorDetailView(GenresYears, DetailView):
     model = Actor
     template_name = 'movies/actor.html'
     
-
     def get_context_data(self, **kwargs):
         """Передает с контекстом суммарное количество фильмов с которыми работал актер/режиссер"""
         context = super().get_context_data(**kwargs)
@@ -115,6 +114,7 @@ class AddStarRating(View):
 
 class Search(ListView):
     """Поиск фильмов по названию"""
+
     paginate_by = 3
 
     def get_queryset(self):
