@@ -1,5 +1,7 @@
 {% extends 'movies/base.html' %}
 
+{% load i18n %}
+
 {% block title %}
     {{ Actor.first_name }}{{ Actor.last_name }}
 {% endblock %}
@@ -23,9 +25,9 @@
                     {{ actor.first_name }} {{ actor.last_name }}
                 </h3>
                 <ul>
-                    <li style="list-style: none"><span><b>Возраст: </b>{{ actor.age }} лет</span></li>
-                    <li style="list-style: none"><span><b>Страна: </b>{{ actor.country }}</span></li>
-                    <li style="list-style: none"><span><b>Всего фильмов: </b>{{ total_movies }}</span></li>
+                    <li style="list-style: none"><span><b>{% trans 'Возраст' %}: </b>{{ actor.age }} лет</span></li>
+                    <li style="list-style: none"><span><b>{% trans 'Страна' %}: </b>{{ actor.country }}</span></li>
+                    <li style="list-style: none"><span><b>{% trans 'Всего фильмов' %}: </b>{{ total_movies }}</span></li>
                     <div class="share-desc">
                         <div class="share">
                             <h4 class="editContent"
@@ -61,7 +63,7 @@
             </div>
             <div class="row sub-para-w3layouts mt-5">
                 <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
-                    Краткое описание
+                    {% trans 'Биография' %}
                 </h3>
                 <p class="editContent" style="outline: none; cursor: inherit;">
                     {{ actor.description }}

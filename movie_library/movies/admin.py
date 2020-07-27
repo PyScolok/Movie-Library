@@ -1,12 +1,14 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
+from modeltranslation.admin import TranslationAdmin
+
 from .models import Movie, Category, Genre, Actor, Review, Comment, RatingStar, Rating, MovieShots
 
 # Редакторы моделей и их регистрация
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(TranslationAdmin):
     """Категории"""
     list_display = ('id', 'name', 'url')
     list_display_links = ('name',)
@@ -33,7 +35,7 @@ class ReviewInline(admin.TabularInline):
 
 
 @admin.register(Movie)
-class MovieAdmin(admin.ModelAdmin):
+class MovieAdmin(TranslationAdmin):
     """Фильмы"""
     list_display = ('title', 'category', 'url', 'draft')
     list_filter = ('category', 'year')
@@ -79,13 +81,13 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 @admin.register(Genre)
-class GenreAdmin(admin.ModelAdmin):
+class GenreAdmin(TranslationAdmin):
     """Жанры"""
     list_filter = ('name', )
 
 
 @admin.register(Actor)
-class ActorAdmin(admin.ModelAdmin):
+class ActorAdmin(TranslationAdmin):
     """Актеры и режиссеры"""
     list_display = ('__str__', 'age', 'get_image', 'country')
     search_fields = ('first_name', 'last_name', 'country')
@@ -98,7 +100,7 @@ class ActorAdmin(admin.ModelAdmin):
 
 
 @admin.register(MovieShots)
-class MovieShotsAdmin(admin.ModelAdmin):
+class MovieShotsAdmin(TranslationAdmin):
     """Кадры из фильма"""
     list_display = ("movie", "id", 'get_image')
     list_filter = ('movie', )
