@@ -1,21 +1,26 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 from modeltranslation.admin import TranslationAdmin
+<<<<<<< HEAD
 
 from .models import Movie, Category, Genre, Actor, Review, Comment, RatingStar, Rating, MovieShots
+=======
+>>>>>>> f317d858e92a39066ec22af13d56f0dcb791a11e
 
-# Редакторы моделей и их регистрация
+from .models import Movie, Category, Genre, Actor, Review, Comment, RatingStar, Rating, MovieShots
 
 
 @admin.register(Category)
 class CategoryAdmin(TranslationAdmin):
     """Категории"""
+
     list_display = ('id', 'name', 'url')
     list_display_links = ('name',)
 
 
 class MovieShotsInline(admin.TabularInline):
     """Кадры на странице редактирования фильма"""
+
     model = MovieShots
     extra = 1
     readonly_fields = ('get_image', )
@@ -29,6 +34,7 @@ class MovieShotsInline(admin.TabularInline):
 
 class ReviewInline(admin.TabularInline):
     """Отзывы на странице редактирования фильма"""
+
     model = Review
     extra = 1
     readonly_fields = ('name', 'email')
@@ -37,6 +43,7 @@ class ReviewInline(admin.TabularInline):
 @admin.register(Movie)
 class MovieAdmin(TranslationAdmin):
     """Фильмы"""
+
     list_display = ('title', 'category', 'url', 'draft')
     list_filter = ('category', 'year')
     search_fields = ('title', 'category__name')
@@ -76,6 +83,7 @@ class MovieAdmin(TranslationAdmin):
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     """Отзывы"""
+
     list_display = ("name", 'email', 'movie')
     readonly_fields = ('name', 'email')
 
@@ -83,12 +91,14 @@ class ReviewAdmin(admin.ModelAdmin):
 @admin.register(Genre)
 class GenreAdmin(TranslationAdmin):
     """Жанры"""
+
     list_filter = ('name', )
 
 
 @admin.register(Actor)
 class ActorAdmin(TranslationAdmin):
     """Актеры и режиссеры"""
+
     list_display = ('__str__', 'age', 'get_image', 'country')
     search_fields = ('first_name', 'last_name', 'country')
 
@@ -102,6 +112,7 @@ class ActorAdmin(TranslationAdmin):
 @admin.register(MovieShots)
 class MovieShotsAdmin(TranslationAdmin):
     """Кадры из фильма"""
+
     list_display = ("movie", "id", 'get_image')
     list_filter = ('movie', )
 
@@ -115,6 +126,7 @@ class MovieShotsAdmin(TranslationAdmin):
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     """Рейтинг"""
+
     list_display = ('star', "movie", "ip")
 
 
