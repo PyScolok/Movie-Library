@@ -1,0 +1,28 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Выйти" %}{% endblock %}
+
+{% block content %}
+
+<section class="ab-info-main py-md-5 py-4 editContent" style="padding-left: 3rem; padding-right: 3rem;">
+  <div class="container">
+
+    <h1>{% trans "Выход" %}</h1>
+
+    <p>{% trans 'Вы уверены что хотите выйти?' %}</p>
+    <form method="post" action="{% url 'account_logout' %}">
+      {% csrf_token %}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+      {% endif %}
+      <button type="submit">{% trans 'Выйти' %}</button>
+    </form>
+    <a href="{% url 'main' %}" style="color: rgb(0, 0, 0); font-weight: 700; text-transform: uppercase;">
+      {% trans 'Отмена' %}
+    </a>
+  </div>
+</section>
+
+{% endblock %}

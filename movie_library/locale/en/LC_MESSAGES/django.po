@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-27 22:58+0300\n"
+"POT-Creation-Date: 2020-07-28 23:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,41 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\templates\account\login.html:7 .\templates\account\login.html:12
+#: .\templates\account\login.html:45
+msgid "Войти"
+msgstr "Sign in"
+
+#: .\templates\account\login.html:27
+msgid "или"
+msgstr "or"
+
+#: .\templates\account\login.html:44
+msgid "Забыли пароль?"
+msgstr "Forgot your password?"
+
+#: .\templates\account\logout.html:5 .\templates\account\logout.html:12
+#: .\templates\account\logout.html:21
+msgid "Выйти"
+msgstr "Exit"
+
+#: .\templates\account\logout.html:14
+msgid "Вы уверены что хотите выйти?"
+msgstr "Are you sure you want to sign out"
+
+#: .\templates\account\logout.html:24
+msgid "Отмена"
+msgstr "Cancel"
+
+#: .\templates\account\signup.html:5 .\templates\account\signup.html:11
+#: .\templates\include\header.html:37
+msgid "Регистрация"
+msgstr "Sign up"
+
+#: .\templates\account\signup.html:21
+msgid "Зарегистрироваться"
+msgstr "Sign up"
 
 #: .\templates\contact\tags\form.html:3
 msgid "Новостная рассылка"
@@ -63,7 +98,11 @@ msgstr "All about cinema"
 msgid "Меню"
 msgstr "Menu"
 
-#: .\templates\include\header.html:26
+#: .\templates\include\header.html:30
+msgid "Выход"
+msgstr "Exit"
+
+#: .\templates\include\header.html:34
 msgid "Вход"
 msgstr "Sign in"
 

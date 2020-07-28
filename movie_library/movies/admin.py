@@ -1,11 +1,6 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
 from modeltranslation.admin import TranslationAdmin
-<<<<<<< HEAD
-
-from .models import Movie, Category, Genre, Actor, Review, Comment, RatingStar, Rating, MovieShots
-=======
->>>>>>> f317d858e92a39066ec22af13d56f0dcb791a11e
 
 from .models import Movie, Category, Genre, Actor, Review, Comment, RatingStar, Rating, MovieShots
 

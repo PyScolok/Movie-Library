@@ -43,7 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'contact.apps.ContactConfig',
+    'allauth',
+    'allauth.account',
 ]
+
+AUTHENTICATION_BACKEND = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -124,6 +132,14 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE = 1
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
 gettext = lambda s: s
 LANGUAGES = (
