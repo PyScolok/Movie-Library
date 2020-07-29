@@ -36,13 +36,6 @@
                         </span>
                     </li>
                     <li style="list-style: none">
-                        <span><b>{% trans 'Актеры' %}: </b>
-                            {% for actor in movie.actors.all %}
-                                <a href="{% url 'actor_detail' actor.id %}">{{ actor.get_full_name }}</a>
-                            {% endfor %}
-                        </span>
-                    </li>
-                    <li style="list-style: none">
                         <span><b>{% trans 'Жанры' %}: </b>
                             {% for genre in movie.genres.all %}
                                 {{ genre.name }}
@@ -66,36 +59,6 @@
                             <span class="editContent">5.0</span>
                         </form>
                     </li>
-                    <div class="share-desc">
-                        <div class="share">
-                            <h4 class="editContent"
-                                style="outline: none; cursor: inherit;">
-                                Share:</h4>
-                            <ul class="w3layouts_social_list list-unstyled">
-                                <li>
-                                    <a href="#" class="w3pvt_facebook editContent"
-                                        style="outline: none; cursor: inherit;">
-                                    <span class="fa fa-facebook-f"
-                                            style="outline: none; cursor: inherit;"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="w3pvt_twitter editContent"
-                                        style="outline: none; cursor: inherit;">
-                                    <span class="fa fa-twitter"
-                                            style="outline: none; cursor: inherit;"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="w3pvt_dribble editContent"
-                                        style="outline: none; cursor: inherit;">
-                                    <span class="fa fa-dribbble"
-                                            style="outline: none; cursor: inherit;"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </ul>    
             </div>
         </div>
@@ -109,12 +72,24 @@
                 {% endfor %}
             </p>
             <p class="editContent" style="outline: none; cursor: inherit;">{{ movie.description }}</p>
-            <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
-                {% trans 'Трейлер к фильму' %}
-            </h3>
-            <p class="mt-3 italic-blue editContent" style="outline: none; cursor: inherit;">
-                <iframe width="560" height="315" src="{{ movie.trailer_link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </p>
+            <div style="width: 100%;">
+                <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
+                    {% trans 'Трейлер к фильму' %}
+                </h3>
+                <p class="mt-3 italic-blue editContent" style="outline: none; cursor: inherit;">
+                    <iframe width="560" height="315" src="{{ movie.trailer_link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </p>
+            </div>
+            <div>
+                <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
+                    {% trans 'Актеры' %}
+                </h3>
+                <ul>
+                    {% for actor in movie.actors.all %}
+                        <li><a href="{% url 'actor_detail' actor.id %}">{{ actor.get_full_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
         <hr>
         <div class="row">
@@ -122,8 +97,8 @@
                 <!-- contact form grid -->
                 <div class="contact-single">
                     <h3 class="editContent" style="outline: none; cursor: inherit;">
-                        <span class="sub-tittle editContent"
-                                style="outline: none; cursor: inherit;">02</span>{% trans 'Оставить отзыв' %}</h3>
+                        {% trans 'Оставить отзыв' %}
+                    </h3>
                     <form action="{% url 'add_review' movie.id %}" method="post" class="mt-4">
                         {% csrf_token %}
                         <div class="form-group1"

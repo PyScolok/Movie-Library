@@ -95,7 +95,6 @@ nav {
     padding: 0;
 }
 
-
 #logo a {
     float: left;
     display: initial;
@@ -183,6 +182,21 @@ nav .menu li a:hover {
 
 .menu li.active a {
     color: #ff4c4c !important;
+}
+
+.user_name {
+    font-weight: 700;
+    font-size: 1.1em;
+    letter-spacing: 2px;
+    padding-left: 0;
+    padding-right: 0;
+    padding: 10px 0;
+    margin: 0px 1em;
+    color:  #f8f9fa;
+    -webkit-transition: 0.5s all ease;
+    -moz-transition: 0.5s all ease;
+    -o-transition: 0.5s all ease;
+    -ms-transition: 0.5s all ease;
 }
 
 /* Hide Dropdowns by Default
@@ -974,7 +988,7 @@ h3.shop-sing {
     text-transform: uppercase;
     font-size: 1.2em;
     letter-spacing: 2px;
-    margin: 1.5em 0 2em 0;
+    margin: 1.5em 0 0.25em 0;
     color: #323a40;
 }
 
@@ -1194,6 +1208,14 @@ h2.logo-2 a {
 .search-button span {
     color: #ff4c4c;
     font-size: 17px; 
+}
+
+.go-button {
+    font-size: 13px;
+    border: 1px solid #cecece;
+    background: #F6F6f6;
+    border-radius: 8px;
+    text-decoration-color: red;
 }
 
 /*--contact--*/

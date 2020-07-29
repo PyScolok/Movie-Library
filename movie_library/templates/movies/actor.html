@@ -28,37 +28,6 @@
                     <li style="list-style: none"><span><b>{% trans 'Возраст' %}: </b>{{ actor.age }} лет</span></li>
                     <li style="list-style: none"><span><b>{% trans 'Страна' %}: </b>{{ actor.country }}</span></li>
                     <li style="list-style: none"><span><b>{% trans 'Всего фильмов' %}: </b>{{ total_movies }}</span></li>
-                    <div class="share-desc">
-                        <div class="share">
-                            <h4 class="editContent"
-                                style="outline: none; cursor: inherit;">
-                                Share:
-                            </h4>
-                            <ul class="w3layouts_social_list list-unstyled">
-                                <li>
-                                    <a href="#" class="w3pvt_facebook editContent"
-                                        style="outline: none; cursor: inherit;">
-                                    <span class="fa fa-facebook-f"
-                                            style="outline: none; cursor: inherit;"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="w3pvt_twitter editContent"
-                                        style="outline: none; cursor: inherit;">
-                                    <span class="fa fa-twitter"
-                                            style="outline: none; cursor: inherit;"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="w3pvt_dribble editContent"
-                                        style="outline: none; cursor: inherit;">
-                                    <span class="fa fa-dribbble"
-                                            style="outline: none; cursor: inherit;"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                 </ul>
             </div>
             <div class="row sub-para-w3layouts mt-5">
@@ -68,6 +37,26 @@
                 <p class="editContent" style="outline: none; cursor: inherit;">
                     {{ actor.description }}
                 </p>
+                <div>
+                    <ul>
+                        <h5>{% trans 'Актер' %}:</h5>
+                        {% if actor.film_actor.all %}
+                            {% for movie in actor.film_actor.all %}
+                                <li><a href="{% url 'movie_detail' movie.url %}">{{ movie.title }}</a></li>
+                            {% endfor %}
+                        {% else %}
+                            <p>{{ actor.get_full_name }} {% trans 'нигде не снимался' %}.</p>
+                        {% endif %}
+                        <h5>{% trans 'Режиссер' %}:</h5>
+                        {% if actor.film_director.all %}
+                            {% for movie in actor.film_director.all %}
+                                <li><a href="{% url 'movie_detail' movie.url %}">{{ movie.title }}</a></li>
+                            {% endfor %}
+                        {% else %}
+                            <p>{{ actor.get_full_name }} {% trans 'ничего не режиссировал' %}.</p>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>  
         </div>
     </div>
