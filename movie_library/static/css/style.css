@@ -432,6 +432,19 @@ li > a:only-child:after {
     background-image: url(../images/banner3.jpg);
 }
 
+
+.select-year {
+    width: 100%;
+    border: none;
+    margin-bottom: 0.9em;
+}
+
+.year {
+    margin-bottom: 0.5em;
+    color: #8c9398;
+
+}
+
 /*-- place holder --*/
 
 .banner-form ::-webkit-input-placeholder {

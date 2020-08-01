@@ -1,7 +1,7 @@
 from django import forms
 from snowpenguin.django.recaptcha3.fields import ReCaptchaField
 
-from .models import Review, Rating, RatingStar, Comment
+from .models import Review, Comment
 
 
 class ReviewForm(forms.ModelForm):
@@ -19,16 +19,6 @@ class ReviewForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control border'}),
             
         }
-
-
-class RatingForm(forms.ModelForm):
-    """Форма добавления звезд рейтинга"""
-
-    star = forms.ModelChoiceField(queryset=RatingStar.objects.all(), widget=forms.RadioSelect(), empty_label=None)
-    
-    class Meta:
-        model = Rating
-        fields = ('star',)
 
 
 class CommentForm(forms.ModelForm):

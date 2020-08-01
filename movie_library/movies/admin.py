@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import mark_safe
 from modeltranslation.admin import TranslationAdmin
 
-from .models import Movie, Category, Genre, Actor, Review, Comment, RatingStar, Rating, MovieShots
+from .models import Movie, Category, Genre, Actor, Review, Comment, MovieShots
 
 
 @admin.register(Category)
@@ -118,15 +118,7 @@ class MovieShotsAdmin(TranslationAdmin):
     get_image.short_description = 'Изображение'
 
 
-@admin.register(Rating)
-class RatingAdmin(admin.ModelAdmin):
-    """Рейтинг"""
-
-    list_display = ('star', "movie", "ip")
-
-
 admin.site.register(Comment)  # комментарии
-admin.site.register(RatingStar)  # звезды рейтинга
 
 # Заголовки административной панели
 admin.site.site_title = 'Movie Library'

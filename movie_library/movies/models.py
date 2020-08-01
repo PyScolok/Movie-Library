@@ -85,7 +85,7 @@ class Movie(models.Model):
 
     def get_absolute_url(self):
         return reverse('movie_detail', kwargs={'slug': self.url})
-
+        
     class Meta:
         verbose_name = 'Фильм'
         verbose_name_plural = 'Фильмы'
@@ -106,36 +106,6 @@ class MovieShots(models.Model):
         verbose_name = 'Кадр из фильма'
         verbose_name_plural = 'Кадры из фильма'
 
-
-class Rating(models.Model):
-    '''Рейтинг'''
-
-    ip = models.CharField('IP-адрес', max_length=15)
-    star = models.ForeignKey(
-        'RatingStar', on_delete=models.CASCADE, verbose_name='Звезда')
-    movie = models.ForeignKey(
-        Movie, on_delete=models.CASCADE, verbose_name='Фильм')
-
-    def __str__(self):
-        return f'{self.star} - {self.movie}'
-
-    class Meta:
-        verbose_name = 'Рейтинг'
-        verbose_name_plural = 'Рейтинги'
-
-
-class RatingStar(models.Model):
-    '''Звезды рейтинга'''
-
-    value = models.SmallIntegerField('Значение', default=0)
-
-    def __str__(self):
-        return str(self.value)
-
-    class Meta:
-        verbose_name = 'Звезда рейтинга'
-        verbose_name_plural = 'Звезды рейтинга'
-        ordering = ['-value']
 
 
 class Review(models.Model):
