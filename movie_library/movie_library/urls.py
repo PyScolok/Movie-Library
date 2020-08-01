@@ -18,7 +18,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
-from django.conf.urls.i18n import i18n_patterns
 from django.contrib.flatpages import views
 
 urlpatterns = [
@@ -30,7 +29,7 @@ urlpatterns += i18n_patterns(
     path('accounts/', include('allauth.urls')),
     path('contact/', include('contact.urls')),
     path('', include('movies.urls')),
-    path('about/', views.flatpage, name='about'),
+    path('pages/', include('django.contrib.flatpages.urls')),
 )
 
 if settings.DEBUG:

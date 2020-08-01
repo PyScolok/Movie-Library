@@ -405,7 +405,7 @@ li > a:only-child:after {
 /*--/banner --*/
 
 .main-banner {
-    background: url(../images/banner.jpg)no-repeat center;
+    background: url(../images/banner2.jpg)no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -416,7 +416,7 @@ li > a:only-child:after {
 }
 
 .main-banner.inner {
-    background: url(../images/banner.jpg)no-repeat center;
+    background: url(../images/banner2.jpg)no-repeat center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -429,7 +429,7 @@ li > a:only-child:after {
 .bg1 {
     background-color: rgba(0, 0, 0, 0);
     margin-top: 0;
-    background-image: url(../single-post-pic.jpg);
+    background-image: url(../images/banner3.jpg);
 }
 
 /*-- place holder --*/
@@ -934,7 +934,7 @@ ul.w3layouts-box-list li {
 }
 
 .desc1-left {
-    border: 1px solid #ddd;
+    
 }
 
 .desc1-right h3 {
@@ -986,6 +986,13 @@ ul.w3layouts-box-list li {
 
 h3.shop-sing {
     text-transform: uppercase;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+    margin: 1.5em 0 0.25em 0;
+    color: #323a40;
+}
+
+h5.shop-sing {
     font-size: 1.2em;
     letter-spacing: 2px;
     margin: 1.5em 0 0.25em 0;

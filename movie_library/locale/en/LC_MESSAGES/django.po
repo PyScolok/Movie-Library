@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-29 23:07+0300\n"
+"POT-Creation-Date: 2020-08-01 16:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,13 +19,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\templates\account\login.html:7 .\templates\account\login.html:12
-#: .\templates\account\login.html:45
+#: .\templates\account\login.html:46
 msgid "Войти"
 msgstr "Sign in"
 
 #: .\templates\account\login.html:27
 msgid "или"
 msgstr "or"
+
+#: .\templates\account\login.html:34
+msgid "Если вы еще не создали учетную запись, пожалуйста"
+msgstr "If you have not created an account yet, then please"
+
+#: .\templates\account\login.html:35
+msgid "зарегистрируйтесь"
+msgstr "sign up"
+
+#: .\templates\account\login.html:35
+msgid "сначала"
+msgstr "first"
 
 #: .\templates\account\login.html:44
 msgid "Забыли пароль?"
@@ -212,6 +224,26 @@ msgstr "Your Email"
 #: .\templates\movies\movie_detail.html:134
 msgid "Отправить"
 msgstr "Send"
+
+#: .\templates\movies\movie_detail.html:154
+msgid "Комментировать"
+msgstr "Comment on"
+
+#: .\templates\movies\movie_detail.html:156
+msgid "Войдите, чтобы комментировать"
+msgstr "Sign in to comment"
+
+#: .\templates\movies\review.html:24
+msgid "Ваш комментарий"
+msgstr "Your comment"
+
+#: .\templates\movies\review.html:48
+msgid "Ответить"
+msgstr "To answer"
+
+#: .\templates\movies\review.html:61
+msgid "Войдите, чтобы комментировать и просматривать комментарии"
+msgstr "Sign in to comment and view comments"
 
 #: .\templates\movies\tags\last_movie.html:4
 msgid "Последние добавленные"

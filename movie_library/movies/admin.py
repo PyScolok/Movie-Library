@@ -79,7 +79,7 @@ class MovieAdmin(TranslationAdmin):
 class ReviewAdmin(admin.ModelAdmin):
     """Отзывы"""
 
-    list_display = ("name", 'email', 'movie')
+    list_display = ('id', "name", 'email', 'movie')
     readonly_fields = ('name', 'email')
 
 

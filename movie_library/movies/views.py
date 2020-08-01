@@ -5,8 +5,8 @@ from django.db.models import Q
 from django.http import JsonResponse, HttpResponse
 
 
-from .forms import ReviewForm, RatingForm
-from .models import Movie, Actor, Genre, Rating
+from .forms import ReviewForm, RatingForm, CommentForm
+from .models import Movie, Actor, Genre, Rating, RatingStar, Comment, Review
 
 
 class GenresYears:
@@ -55,6 +55,30 @@ class AddReview(View):
         return redirect(movie.get_absolute_url())
 
 
+class ReviewView(DetailView):
+    """Просмотр отзыва и комментариев"""
+
+    model = Review
+    template_name = 'movies/review.html'
+    
+
+
+class AddComment(View):
+    """Добавление комментария"""
+
+    def post(self, request, pk):
+        form = CommentForm(request.POST)
+        review = Review.objects.get(id=pk)
+        print(review)
+        if form.is_valid():
+            form = form.save(commit=False)
+            if request.POST.get('parent', None):
+                form.parent_id = int(request.POST.get('parent'))
+            form.review = review
+            form.save()
+        return redirect('review', pk=review.id, slug=review.movie.url)
+        
+
 class ActorDetailView(GenresYears, DetailView):
     """Детальное описание актера/режиссера"""
 
@@ -76,11 +100,14 @@ class FilterMovies(GenresYears, ListView):
     paginate_by = 2
 
     def get_queryset(self):
-        queryset = Movie.objects.filter(
-            Q(year__in=self.request.GET.getlist('year')) |
-            Q(genres__in=self.request.GET.getlist('genre'))
-        ).distinct()
+        if "genre" in self.request.GET:
+            queryset = Movie.objects.filter(genres__in=self.request.GET.getlist('genre'))
+            if "year" in self.request.GET:
+                queryset = queryset.filter(year__in=self.request.GET.getlist('year'))
+        else:
+            queryset = Movie.objects.filter(year__in=self.request.GET.getlist('year'))
         return queryset
+
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
@@ -115,7 +142,7 @@ class AddStarRating(View):
 class Search(ListView):
     """Поиск фильмов по названию"""
 
-    paginate_by = 3
+    paginate_by = 2
 
     def get_queryset(self):
         return Movie.objects.filter(title__icontains=self.request.GET.get('q'))

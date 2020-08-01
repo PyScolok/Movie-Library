@@ -140,35 +140,21 @@
         </div>
         {% for review in movie.review_set.all %}
             <div class="media py-5">
-                <img src="bundles/images/te2.jpg" class="mr-3 img-fluid" alt="image"
-                        style="outline: none; cursor: inherit;">
                 <div class="media-body mt-4">
-                    <h5 class="mt-0 editContent">
+                    <h4 class="mt-0 editContent">
                         {{ review.name }}
-                    </h5>
+                    </h4>
                     <h6 class="mt-1 editContent">
                         {{ review.title }}
                     </h6>
                     <p class="mt-2 editContent">
                         {{ review.text }}
                     </p>
-                    <!-- <div class="media mt-5 editContent"
-                            style="outline: none; cursor: inherit;">
-                        <a class="pr-3" href="#">
-                            <img src="bundles/images/te1.jpg" class="img-fluid "
-                                    alt="image" style="outline: none; cursor: inherit;">
-                        </a>
-                        <div class="media-body">
-                            <h5 class="mt-0 editContent"
-                                style="outline: none; cursor: inherit;">Leia Organa</h5>
-                            <p class="mt-2 editContent"
-                                style="outline: none; cursor: inherit;"> Cras sit amet
-                                nibh libero, in gravida nulla. Nulla vel metus
-                                scelerisque ante sollicitudin. Cras purus odio,
-                                vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                condimentum nunc ac nisi vulputate fringilla..</p>
-                        </div>
-                    </div> -->
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'review' pk=review.id slug=review.movie.url %}">{% trans 'Комментировать' %}</a>
+                    {% else %}
+                        <p style="color: #ff4c4c;">{% trans 'Войдите, чтобы комментировать' %}</p>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

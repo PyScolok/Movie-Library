@@ -151,6 +151,9 @@ class Review(models.Model):
     def __str__(self):
         return f'{self.name} - {self.movie}'
 
+    def get_comment(self):
+        return self.comment_set.filter(parent__isnull=True)
+
     class Meta:
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
@@ -159,14 +162,14 @@ class Review(models.Model):
 class Comment(models.Model):
     '''Комментарии'''
     
+    author = models.CharField('Автор', max_length=50)
     email = models.EmailField()
-    name = models.CharField('Имя', max_length=50)
-    comment = models.TextField('Комментарий')
-    parent = models.ForeignKey(
-        Review, on_delete=models.CASCADE, verbose_name='Комментируемый отзыв')
+    text = models.TextField('Комментарий')
+    review = models.ForeignKey(Review, on_delete=models.CASCADE, verbose_name='Комментируемый отзыв')
+    parent = models.ForeignKey('self', verbose_name='Родитель', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return f'Comment by {self.author}'
 
     class Meta:
         verbose_name = 'Комментарий'

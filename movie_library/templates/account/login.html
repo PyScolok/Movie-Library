@@ -31,8 +31,8 @@
       {% include "socialaccount/snippets/login_extra.html" %}
 
       {% else %}
-      <p>{% blocktrans %}If you have not created an account yet, then please
-      <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+      <p>{% trans 'Если вы еще не создали учетную запись, пожалуйста' %}
+      <a href="{{ signup_url }}">{% trans "зарегистрируйтесь" %}</a> {% trans 'сначала' %}.</p>
       {% endif %}
 
       <form class="login" method="POST" action="{% url 'account_login' %}">
@@ -42,7 +42,9 @@
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
         <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Забыли пароль?" %}</a>
-        <button class="primaryAction" type="submit">{% trans "Войти" %}</button>
+        <div>
+          <button class="search-button" type="submit"><span style="color: #ff4c4c;">{% trans "Войти" %}</span></button>
+        </div>
       </form>
     </div>
   </section>  

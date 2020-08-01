@@ -1,0 +1,72 @@
+{% extends 'movies/base.html' %}
+
+{% load i18n %}
+
+{% block container%}
+    <div class="container py-md-3">
+{% endblock %}
+
+{% block content %}
+    <section class="ab-info-main py-md-5 py-4 editContent" style="padding-left: 3rem; padding-right: 3rem;">
+        <div class="container">
+            {% if user.is_authenticated %}
+                <div class="row">
+                    <div class='review_block'>
+                        <h3>
+                            {{ review.name }}
+                        </h3>
+                        <h5>
+                            {{review.title}}
+                        </h5>
+                        <p>{{ review.text }}</p>
+                    </div>
+                    <div class="comment-form"> 
+                        <h5>{% trans 'Ваш комментарий' %}</h5>
+                        <form action="{% url 'add_comment' review.id %}" method="post" class="mt-4" id="formComment">
+                            {% csrf_token %}
+                            <input type="hidden" id='contactparent' name="parent" value="">
+                            <div class="form-comment editContent">
+                                <textarea class="form-control border" rows="5" name="text" id="contactcomment" required=""></textarea>
+                                <button type="submit" class="btn-comment btn-success">
+                                    <span class="fa fa-comment-o"></span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="author" value="{{ user.username }}">
+                            <input type="hidden" name='email' value="{{ user.email }}">
+                        </form>
+                    </div>
+                </div>
+                {% for comment in review.get_comment %}
+                    <div class="media py-5">
+                        <div class="media-body mt-4">
+                            <h4 class="mt-0 editContent">
+                                {{ comment.author }}
+                            </h4>
+                            <p class="mt-2 editContent">
+                                {{ comment.text }}
+                            </p>
+                            <a href="#formComment" onclick="addReview('{{ comment.author }}', '{{ comment.id }}')">{% trans 'Ответить' %}</a>
+                            {% for comm in comment.comment_set.all %}
+                                <div class="media mt-5 editContent answer">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 editContent">{{ comm.author }}</h5>
+                                        <p class="mt-2 editContent">{{ comm.text }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="color: #ff4c4c;">{% trans 'Войдите, чтобы комментировать и просматривать комментарии' %}...</p>
+            {% endif %}    
+        </div>
+    </section>
+    <script>
+        function addReview(name, id) {
+            document.getElementById('contactparent').value = id;
+            document.getElementById('contactcomment').innerText = `${name}, `
+
+        }
+    </script>    
+{% endblock %}

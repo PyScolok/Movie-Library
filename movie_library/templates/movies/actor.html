@@ -39,21 +39,21 @@
                 </p>
                 <div>
                     <ul>
-                        <h5>{% trans 'Актер' %}:</h5>
+                        <h5 class="shop-sing editContent">{% trans 'Актер' %}:</h5>
                         {% if actor.film_actor.all %}
                             {% for movie in actor.film_actor.all %}
-                                <li><a href="{% url 'movie_detail' movie.url %}">{{ movie.title }}</a></li>
+                                <li><a href="{% url 'movie_detail' movie.url %}">{{ movie.title }}</a> ({{movie.year}})</li>
                             {% endfor %}
                         {% else %}
-                            <p>{{ actor.get_full_name }} {% trans 'нигде не снимался' %}.</p>
+                            <p>{{ actor.get_full_name }} {% trans 'нигде не снимался' %}...</p>
                         {% endif %}
-                        <h5>{% trans 'Режиссер' %}:</h5>
+                        <h5 class="shop-sing editContent">{% trans 'Режиссер' %}:</h5>
                         {% if actor.film_director.all %}
                             {% for movie in actor.film_director.all %}
-                                <li><a href="{% url 'movie_detail' movie.url %}">{{ movie.title }}</a></li>
+                                <li><a href="{% url 'movie_detail' movie.url %}">{{ movie.title }}</a> ({{movie.year}})</li>
                             {% endfor %}
                         {% else %}
-                            <p>{{ actor.get_full_name }} {% trans 'ничего не режиссировал' %}.</p>
+                            <p>{{ actor.get_full_name }} {% trans 'ничего не режиссировал' %}...</p>
                         {% endif %}
                     </ul>
                 </div>
