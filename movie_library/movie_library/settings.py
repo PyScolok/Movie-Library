@@ -47,11 +47,6 @@ INSTALLED_APPS = [
     'allauth.account',
 ]
 
-AUTHENTICATION_BACKEND = (
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -133,14 +128,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE = 1
-ACCOUNT_USERNAME_MIN_LENGTH = 4
-LOGIN_REDIRECT_URL = '/'
-
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-
 gettext = lambda s: s
 LANGUAGES = (
     ('ru', gettext('Russia')),
@@ -149,6 +136,18 @@ LANGUAGES = (
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
+)
+
+# Authentication settings
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE = 1
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
+AUTHENTICATION_BACKEND = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 # Static files (CSS, JavaScript, Images)
@@ -161,6 +160,7 @@ STATICFILES_DIRS = [STATIC_DIR]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Recaptcha settings
 RECAPTCHA_PRIVATE_KEY = '6Lc0NbUZAAAAAEdYsx8Rl5KYI1m7FL9Dzu2x5eZb'
 RECAPTCHA_PUBLIC_KEY = '6Lc0NbUZAAAAAPEhgMSP7h5ZmrEKwmEQ7AhBYNJC'
 RECAPTCHA_DEFAULT_ACTION = 'generic'

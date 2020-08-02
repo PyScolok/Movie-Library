@@ -3,7 +3,7 @@ from modeltranslation.translator import register, TranslationOptions
 from .models import Category, Actor, Movie, Genre, MovieShots
 
 
-# Регистрация дополнительных полей моделей подлежащих переводу 
+# Регистрация полей моделей подлежащих переводу 
 @register(Category)
 class CategoryTranslationOptions(TranslationOptions):
     fields = ('name', 'description')
