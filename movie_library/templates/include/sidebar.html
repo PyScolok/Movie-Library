@@ -1,0 +1,48 @@
+{% load i18n movie_tag %}
+
+
+<div class="search-bar w3layouts-newsletter">
+    <h3 class="sear-head editContent" >{% trans 'Поиск фильма' %}</h3>
+    <form action="{% url 'search' %}" method="GET" class="d-flex editContent" >
+        {% csrf_token %}
+        <input type="search" placeholder="{% trans 'Введите название' %}..." name="q" class="form-control" required="">
+        <button class="btn1 btn" type="submit" ><span class="fa fa-search" aria-hidden="true" ></span></button>
+    </form>
+</div>
+<!--preference -->
+<form action="{% url 'filter' %}" method="GET" name='filter'>
+    <div class="left-side my-4">
+        <h3 class="sear-head editContent" >{% trans 'Жанры' %}</h3>
+        <ul class="w3layouts-box-list">
+            {% for genre in view.get_genres %}
+                <li class="editContent" >
+                    <input type="checkbox" class="checked" name="genre" value="{{ genre.id }}">
+                    <span class="span editContent">{{ genre.name }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="left-side">
+        <h3 class="sear-head editContent">{% trans 'Год' %}</h3>
+        <select class="select-year" name="year" id="selectYear" multiple size="5">
+            {% for movie_year in view.get_years %}
+                <option class="year" value="{{ movie_year.year }}">
+                    {{ movie_year.year }}
+                </option>
+            {% endfor %}
+        </select>
+        <!-- <ul class="w3layouts-box-list">
+            {% for movie_year in view.get_years %}
+                <li class="editContent">
+                    <input type="checkbox" class="checked" name="year" value="{{ movie_year.year }}">
+                    <span class="span editContent" >{{ movie_year.year }}</span>
+                </li>
+            {% endfor %}
+        </ul> -->
+    </div>
+    <button class="search-button" type="submit"><span>{% trans 'Найти' %}</span></button>
+</form>
+<!-- //discounts -->
+
+
+{% get_last_movies %}
