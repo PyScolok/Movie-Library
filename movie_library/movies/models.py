@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Category(models.Model):
-    '''Категории'''
+    """Категории"""
 
     name = models.CharField('Категория', max_length=150)
     description = models.TextField('Описание')
@@ -18,7 +18,7 @@ class Category(models.Model):
 
 
 class Actor(models.Model):
-    '''Актеры и режиссеры'''
+    """Актеры и режиссеры"""
 
     first_name = models.CharField('Имя', max_length=50)
     last_name = models.CharField('Фамилия', max_length=50)
@@ -39,7 +39,7 @@ class Actor(models.Model):
 
 
 class Genre(models.Model):
-    '''Жанры'''
+    """Жанры"""
 
     name = models.CharField('Жанр', max_length=25)
     description = models.TextField('Описание')
@@ -54,29 +54,22 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
-    '''Фильмы'''
+    """Фильмы"""
 
     title = models.CharField('Название', max_length=100)
     tagline = models.CharField('Слоган', max_length=100, default='')
     description = models.TextField('Описание')
     poster = models.ImageField('Постер', upload_to='movies/')
     trailer_link = models.URLField('Трейлер', null=True)
-    year = models.PositiveSmallIntegerField(
-        'Год выхода', null=True, blank=True)
+    year = models.PositiveSmallIntegerField('Год выхода', null=True, blank=True)
     country = models.CharField('Страна', max_length=50)
-    directors = models.ManyToManyField(
-        Actor, verbose_name='Режиссер', related_name='film_director')
-    actors = models.ManyToManyField(
-        Actor, verbose_name='Актеры', related_name='film_actor')
+    directors = models.ManyToManyField(Actor, verbose_name='Режиссер', related_name='film_director')
+    actors = models.ManyToManyField(Actor, verbose_name='Актеры', related_name='film_actor')
     genres = models.ManyToManyField(Genre, verbose_name='Жанры')
-    world_premiere = models.DateField(
-        'Мировая премьера', null=True, blank=True)
-    budget = models.PositiveIntegerField(
-        'Бюджет', null=True, blank=True, help_text='Сумма в долларах')
-    fees_in_world = models.PositiveIntegerField(
-        'Сборы в мире', null=True, blank=True, help_text='Сумма в долларах')
-    category = models.ForeignKey(
-        Category, on_delete=models.SET_NULL, verbose_name='Категория', null=True)
+    world_premiere = models.DateField('Мировая премьера', null=True, blank=True)
+    budget = models.PositiveIntegerField('Бюджет', null=True, blank=True, help_text='Сумма в долларах')
+    fees_in_world = models.PositiveIntegerField('Сборы в мире', null=True, blank=True, help_text='Сумма в долларах')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, verbose_name='Категория', null=True)
     url = models.SlugField(max_length=160, unique=True)
     draft = models.BooleanField('Черновик', default=False)
 
@@ -92,7 +85,7 @@ class Movie(models.Model):
 
 
 class MovieShots(models.Model):
-    '''Кадры из фильма'''
+    """Кадры из фильма"""
 
     title = models.CharField('Заголовок', max_length=50)
     image = models.ImageField('Изображение', upload_to='movie_shots/')
@@ -107,16 +100,14 @@ class MovieShots(models.Model):
         verbose_name_plural = 'Кадры из фильма'
 
 
-
 class Review(models.Model):
-    '''Отзывы'''
+    """Отзывы"""
 
     email = models.EmailField()
     name = models.CharField('Имя', max_length=50)
     title = models.CharField('Заголовок', max_length=100)
     text = models.TextField('Текст отзыва')
-    movie = models.ForeignKey(
-        Movie, on_delete=models.CASCADE, verbose_name='Фильм')
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, verbose_name='Фильм')
 
     def __str__(self):
         return f'{self.name} - {self.movie}'
@@ -130,7 +121,7 @@ class Review(models.Model):
 
 
 class Comment(models.Model):
-    '''Комментарии'''
+    """Комментарии"""
     
     author = models.CharField('Автор', max_length=50)
     email = models.EmailField()

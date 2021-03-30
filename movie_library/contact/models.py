@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Contact(models.Model):
     """Подписка на рассылку по Email"""
 

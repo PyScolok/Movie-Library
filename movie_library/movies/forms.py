@@ -5,7 +5,7 @@ from .models import Review, Comment
 
 
 class ReviewForm(forms.ModelForm):
-    '''Форма отзыва'''
+    """Форма отзыва"""
 
     captcha = ReCaptchaField()
 

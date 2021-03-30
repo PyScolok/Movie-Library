@@ -1,29 +1,24 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
-from django.db.models import Q
-from django.http import JsonResponse, HttpResponse
 
 
 from .forms import ReviewForm, CommentForm
-from .models import Movie, Actor, Genre, Comment, Review
+from .models import Movie, Actor, Genre, Review
 
 
 class GenresYears:
     """Жанры и годы выхода фильмов"""
 
     def get_genres(self):
-        """Получение всех жанров фильма"""
         return Genre.objects.all()
     
     def get_years(self):
-        """Получение года выхода всех фильмов"""
         return Movie.objects.filter(draft=False).values('year').order_by('-year')
-    
 
 
 class MoviesView(GenresYears, ListView):
-    '''Вывод фильмов'''
+    """Вывод фильмов"""
 
     model = Movie
     queryset = Movie.objects.filter(draft=False)
@@ -31,7 +26,7 @@ class MoviesView(GenresYears, ListView):
 
 
 class MovieDetailView(GenresYears, DetailView):
-    '''Детальное описание фильма'''
+    """Детальное описание фильма"""
 
     model = Movie
     slug_field = 'url'
@@ -43,7 +38,7 @@ class MovieDetailView(GenresYears, DetailView):
 
 
 class AddReview(View):
-    '''Добавление отзыва'''
+    """Добавление отзыва"""
 
     def post(self, request, pk):
         form = ReviewForm(request.POST)
@@ -61,7 +56,6 @@ class ReviewView(DetailView):
     model = Review
     template_name = 'movies/review.html'
     
-
 
 class AddComment(View):
     """Добавление комментария"""
@@ -108,7 +102,6 @@ class FilterMovies(GenresYears, ListView):
             queryset = Movie.objects.filter(year__in=self.request.GET.getlist('year'))
         return queryset
 
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['year'] = ''.join([f'year={x}&' for x in self.request.GET.getlist('year')])
@@ -126,5 +119,5 @@ class Search(ListView):
     
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['q'] =  f'q={self.request.GET.get("q")}&' 
+        context['q'] = f'q={self.request.GET.get("q")}&'
         return context

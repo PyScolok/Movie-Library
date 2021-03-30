@@ -18,7 +18,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
-from django.contrib.flatpages import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),

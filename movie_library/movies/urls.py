@@ -1,7 +1,6 @@
 from django.urls import path
 from . import views
 
-# Маршрутизатор приложения movies
 urlpatterns = [
     path('', views.MoviesView.as_view(), name='main'),
     path('filter/', views.FilterMovies.as_view(), name='filter'),
